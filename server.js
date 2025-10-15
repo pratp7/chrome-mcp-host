@@ -18,7 +18,16 @@ let pendingRequests = new Map();
 function initializeMCP() {
     if (mcpProcess) return;
 
-    mcpProcess = spawn('npx', ['-y', 'chrome-devtools-mcp@latest'], {
+    mcpProcess = spawn('npx', [
+        '-y', 'chrome-devtools-mcp@latest',
+        '--', '--headless', 'true',
+        '--isolated', 'true',
+        '--disable-notifications',
+        '--disable-popup-blocking',
+        '--use-fake-ui-for-media-stream',
+        '--use-fake-device-for-media-stream',
+        '--disable-geolocation'
+    ], {
         stdio: ['pipe', 'pipe', 'pipe']
     });
 
