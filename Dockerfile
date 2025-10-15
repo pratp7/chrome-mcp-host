@@ -1,5 +1,5 @@
-# Use Node.js 18
-FROM node:18-slim
+# Use Node.js 20.19.0
+FROM node:20.19.0-slim
 
 # Install Chrome dependencies
 RUN apt-get update && apt-get install -y \
