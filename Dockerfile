@@ -27,9 +27,11 @@ RUN npm ci --only=production
 # Copy app code
 COPY . .
 
-# Create non-root user
 RUN groupadd -r appuser && useradd -r -g appuser -G audio,video appuser \
-    && chown -R appuser:appuser /app
+    && mkdir -p /home/appuser \
+    && chown -R appuser:appuser /app /home/appuser
+
+ENV HOME=/home/appuser
 
 USER appuser
 
